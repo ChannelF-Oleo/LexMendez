@@ -1,26 +1,24 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*
+ * LexMendez Global — Tokens de marca (Tailwind v4, CSS-first).
+ * En Tailwind v4 los tokens se declaran en @theme y generan utilidades
+ * automáticamente (p.ej. --color-purple => bg-purple / text-purple).
+ * Las familias de fuente se enlazan a las variables CSS que expone next/font
+ * en el <html> desde src/app/layout.tsx.
+ */
+@theme {
+  /* Colores de marca */
+  --color-purple: #2e2247;
+  --color-purpleDeep: #241a39;
+  --color-purpleSoft: #3a2c57;
+  --color-gold1: #ead08c;
+  --color-gold2: #c9a24b;
+  --color-gold3: #9a7729;
+  --color-cream: #f5f1ea;
+  --color-cream2: #efe9de;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Tipografías (variables inyectadas por next/font) */
+  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
 }
