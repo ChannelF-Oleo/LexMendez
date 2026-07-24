@@ -104,8 +104,15 @@ export default function Footer() {
 
         {/* Barra inferior */}
         <div className="mt-14 flex flex-col items-center justify-between gap-6 border-t border-cream/10 pt-8 sm:flex-row">
-          <p className="text-xs text-cream/60">
-            © 2026 LexMendez Global. Todos los derechos reservados.
+          <p className="flex items-center gap-2 text-xs text-cream/60">
+            <span>© 2026 LexMendez Global. Todos los derechos reservados.</span>
+            <span aria-hidden="true" className="text-cream/20">·</span>
+            <Link
+              href="/admin/login"
+              className="text-cream/30 outline-none transition-colors hover:text-gold1 focus-visible:text-gold1"
+            >
+              Admin
+            </Link>
           </p>
           <div className="flex items-center gap-4">
             {socials.map((social) => (
