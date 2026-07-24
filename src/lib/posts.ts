@@ -21,7 +21,7 @@ function toMillis(value: unknown, fallback: number | null = null): number | null
 }
 
 /** Mapea un documento de Firestore a la interfaz Post de forma tipada. */
-function docToPost(id: string, data: DocumentData | undefined): Post {
+export function docToPost(id: string, data: DocumentData | undefined): Post {
   const d = data ?? {};
   return {
     id,

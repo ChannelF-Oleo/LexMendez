@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { getCurrentAdmin } from "@/lib/auth/getCurrentAdmin";
 
 export const dynamic = "force-dynamic";
@@ -26,17 +27,21 @@ export default async function AdminDashboardPage() {
       </p>
 
       <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <div className="rounded-2xl border border-purple/10 bg-cream p-7">
+        <Link
+          href="/admin/posts"
+          className="group rounded-2xl border border-purple/10 bg-cream p-7 outline-none transition-all duration-300 hover:-translate-y-1 hover:border-gold2/40 hover:shadow-xl hover:shadow-purple/10 focus-visible:ring-2 focus-visible:ring-gold2/60"
+        >
           <h2 className="font-serif text-xl font-semibold text-purple">
             Gestión de artículos
           </h2>
           <p className="mt-2 text-sm leading-relaxed text-purpleSoft">
             Crear, editar y publicar posts del blog.
           </p>
-          <span className="mt-4 inline-block rounded-full bg-purple/10 px-3 py-1 text-xs font-semibold text-purple">
-            Próximamente (Fase 5b)
+          <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-gold3 transition-colors group-hover:text-gold2">
+            Ir a artículos
+            <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </span>
-        </div>
+        </Link>
       </div>
     </div>
   );
