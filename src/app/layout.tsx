@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Montserrat } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import SiteChrome from "@/components/layout/SiteChrome";
 import FirebaseAnalytics from "@/components/analytics/FirebaseAnalytics";
 
 const playfair = Playfair_Display({
@@ -37,10 +36,7 @@ export default function RootLayout({
       className={`${playfair.variable} ${montserrat.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
-        <Header />
-        {/* pt compensa el header fijo (~88px arriba). */}
-        <main className="flex-1 pt-20 md:pt-24">{children}</main>
-        <Footer />
+        <SiteChrome>{children}</SiteChrome>
         <FirebaseAnalytics />
       </body>
     </html>
