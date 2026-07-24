@@ -51,12 +51,12 @@ export default function Home() {
   return (
     <>
       {/* 1. HERO */}
-      <section className="relative -mt-20 overflow-hidden bg-gradient-to-b from-purpleDeep via-purple to-purpleSoft md:-mt-24">
+      <section className="relative -mt-20 flex min-h-[600px] items-center overflow-hidden bg-gradient-to-b from-purpleDeep via-purple to-purpleSoft md:-mt-24">
         <Isotype
           className="pointer-events-none absolute -right-16 top-1/2 h-[36rem] w-[36rem] -translate-y-1/2 opacity-[0.06] md:right-0"
           title=""
         />
-        <Container className="relative pb-20 pt-36 md:pb-28 md:pt-48">
+        <Container className="relative w-full pb-16 pt-28 md:pb-20 md:pt-32">
           <div className="max-w-3xl">
             <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.28em]">
               <span className="h-px w-8 bg-gradient-to-r from-gold1 to-gold3" />
@@ -66,11 +66,11 @@ export default function Home() {
               Tu tranquilidad legal, <span className="italic">nuestra</span>{" "}
               <span className="text-gold-gradient">misión.</span>
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-cream/80">
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-cream/80">
               En {site.nombre} combinamos rigor jurídico y una visión internacional
               para ofrecerte soluciones claras, cercanas y estratégicas.
             </p>
-            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+            <div className="mt-7 flex flex-col gap-4 sm:flex-row">
               <Button as="link" href="/contacto" variant="gold">
                 Agenda una consulta
               </Button>
@@ -79,7 +79,7 @@ export default function Home() {
               </Button>
             </div>
 
-            <dl className="mt-14 grid max-w-lg grid-cols-3 gap-6 border-t border-cream/15 pt-8">
+            <dl className="mt-10 grid max-w-lg grid-cols-3 gap-6 border-t border-cream/15 pt-7">
               {[
                 { k: "7", v: "Áreas de práctica" },
                 { k: "100%", v: "Confidencialidad" },
