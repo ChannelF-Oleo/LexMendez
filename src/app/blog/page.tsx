@@ -1,14 +1,56 @@
+import type { Metadata } from "next";
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
+import Subhero from "@/components/layout/Subhero";
+import CtaBand from "@/components/layout/CtaBand";
+import FeaturedPost from "@/components/blog/FeaturedPost";
+import BlogListing from "@/components/blog/BlogListing";
+import { getPublishedPosts, getFeaturedPost } from "@/lib/posts";
 
-export default function BlogPage() {
+// ISR: la página se regenera como máximo cada 5 minutos.
+export const revalidate = 300;
+
+export const metadata: Metadata = {
+  title: "Blog jurídico — LexMendez Global",
+  description:
+    "Artículos y guías prácticas sobre derecho civil, familia, migración y más, del equipo de LexMendez Global.",
+};
+
+export default async function BlogPage() {
+  const [posts, featured] = await Promise.all([
+    getPublishedPosts(),
+    getFeaturedPost(),
+  ]);
+
+  // El destacado se muestra en su propio bloque; se excluye del grid para no
+  // duplicarlo. El resto (incluidas todas las categorías) va al listado filtrable.
+  const rest = featured ? posts.filter((p) => p.id !== featured.id) : posts;
+
   return (
-    <Section>
-      <Container>
-        <h1 className="font-serif text-3xl font-semibold text-purple sm:text-4xl">
-          Blog
-        </h1>
-      </Container>
-    </Section>
+    <>
+      <Subhero
+        eyebrow="Blog jurídico"
+        title={
+          <>
+            Información legal <span className="text-gold-gradient">clara y útil.</span>
+          </>
+        }
+        description="Guías y artículos prácticos para entender tus derechos y tomar mejores decisiones."
+      />
+
+      <Section>
+        <Container>
+          {featured ? (
+            <div className="mb-14">
+              <FeaturedPost post={featured} />
+            </div>
+          ) : null}
+
+          <BlogListing posts={rest} />
+        </Container>
+      </Section>
+
+      <CtaBand />
+    </>
   );
 }
