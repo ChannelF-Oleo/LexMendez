@@ -41,3 +41,24 @@ html {
   background-clip: text;
   color: transparent;
 }
+
+/* Animaciones de apertura del modal de áreas. */
+@keyframes lm-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes lm-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
