@@ -36,10 +36,10 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 backdrop-blur-md transition-all duration-300 ${
         scrolled
-          ? "bg-purple/85 shadow-lg shadow-purpleDeep/30 backdrop-blur-md"
-          : "bg-transparent"
+          ? "bg-purpleDeep/95 shadow-[0_10px_40px_rgba(0,0,0,.25)]"
+          : "bg-gradient-to-b from-purple/85 to-purple/55 border-b border-[color:var(--color-gold2)]/15"
       }`}
     >
       <Container
