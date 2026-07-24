@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { getAnalyticsClient } from "@/lib/firebase";
+import { getAnalyticsClient } from "@/lib/firebase/client";
 
 /**
  * Inicializa Firebase Analytics en el cliente (una sola vez al montar).

@@ -1,4 +1,7 @@
 import { initializeApp, getApp, getApps, type FirebaseApp } from "firebase/app";
+import { getFirestore, type Firestore } from "firebase/firestore";
+import { getAuth, type Auth } from "firebase/auth";
+import { getStorage, type FirebaseStorage } from "firebase/storage";
 import {
   getAnalytics,
   isSupported,
@@ -28,6 +31,11 @@ const firebaseConfig = {
 export const firebaseApp: FirebaseApp = getApps().length
   ? getApp()
   : initializeApp(firebaseConfig);
+
+/** Instancias de los servicios de cliente, reutilizables en client components. */
+export const db: Firestore = getFirestore(firebaseApp);
+export const auth: Auth = getAuth(firebaseApp);
+export const storage: FirebaseStorage = getStorage(firebaseApp);
 
 /**
  * Inicializa Analytics solo en el navegador y solo si el entorno lo soporta
