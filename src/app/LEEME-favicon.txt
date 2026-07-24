@@ -1,0 +1,26 @@
+FAVICON — LexMendez Global
+===========================
+Estrategia de dos versiones para máxima legibilidad:
+- Tamaños pequeños  -> monograma "LM" (grueso, se lee incluso a 16px)
+- Tamaños grandes   -> isotipo completo (luna, globo, estrella)
+
+ARCHIVOS
+- favicon.ico ....... multi-resolución (16/32/48). El clásico.
+- favicon-16/32/48.png  monograma LM.
+- icon-192.png / icon-512.png  isotipo completo (PWA / Android).
+- apple-icon.png (180) isotipo completo (iOS).
+- icon.svg .......... favicon vectorial (monograma LM, escala perfecto).
+- icon-full.svg ..... isotipo completo en vector (por si lo necesitas).
+
+CÓMO USARLO EN NEXT.JS (App Router) — en la Fase 0/1
+Next.js detecta automáticamente ciertos archivos si los pones en src/app/:
+1. Copia a  src/app/  estos archivos, renombrando:
+     favicon.ico        -> src/app/favicon.ico
+     icon.svg           -> src/app/icon.svg        (favicon SVG moderno)
+     apple-icon.png     -> src/app/apple-icon.png  (iOS)
+   Con solo esos nombres, Next.js genera los <link> correctos. No hace falta más.
+
+2. Para PWA / Android (opcional), copia icon-192.png e icon-512.png a public/
+   y referéncialos en un manifest.json (lo hacemos en la fase de SEO/deploy).
+
+Colores: fondo #2E2247, monograma/isotipo en dorado.

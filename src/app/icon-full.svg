@@ -1,0 +1,22 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gold" x1="10%" y1="0%" x2="90%" y2="100%">
+      <stop offset="0%" stop-color="#EAD08C"/><stop offset="50%" stop-color="#C9A24B"/><stop offset="100%" stop-color="#9A7729"/>
+    </linearGradient>
+    <clipPath id="lh"><rect x="150" y="300" width="300" height="220"/></clipPath>
+  </defs>
+  <!-- fondo morado con esquinas redondeadas -->
+  <rect width="512" height="512" rx="96" fill="#2E2247"/>
+  <!-- isotipo centrado con padding (escalado y movido) -->
+  <g transform="translate(256,266) scale(0.62) translate(-300,-300)">
+    <path d="M 430 165 A 185 185 0 1 0 465 320" fill="none" stroke="url(#gold)" stroke-width="14" stroke-linecap="round"/>
+    <path d="M452 148 l7.5 18 18 7.5 -18 7.5 -7.5 18 -7.5 -18 -18 -7.5 18 -7.5 z" fill="url(#gold)"/>
+    <g stroke="url(#gold)" stroke-width="3.4" fill="none" clip-path="url(#lh)">
+      <circle cx="300" cy="300" r="140"/><ellipse cx="300" cy="300" rx="52" ry="140"/>
+      <ellipse cx="300" cy="300" rx="103" ry="140"/><ellipse cx="300" cy="300" rx="140" ry="58"/>
+      <ellipse cx="300" cy="300" rx="140" ry="105"/><line x1="160" y1="300" x2="440" y2="300"/>
+    </g>
+    <path d="M298 372 L298 210 L323 210 L360 300 L397 210 L422 210 L422 372 L400 372 L400 262 L369 335 L351 335 L320 262 L320 372 Z" fill="url(#gold)"/>
+    <path d="M246 200 L268 200 L268 350 L326 350 L326 372 L246 372 Z" fill="url(#gold)"/>
+  </g>
+</svg>

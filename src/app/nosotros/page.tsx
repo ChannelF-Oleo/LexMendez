@@ -1,17 +1,13 @@
 import Container from "@/components/ui/Container";
 import Section from "@/components/ui/Section";
 
-export default function Home() {
+export default function NosotrosPage() {
   return (
     <Section>
       <Container>
         <h1 className="font-serif text-3xl font-semibold text-purple sm:text-4xl">
-          Home — en construcción (Fase 2)
+          Nosotros
         </h1>
-        <p className="mt-4 font-sans text-base text-purpleSoft">
-          Contenido temporal para validar que el Header y el Footer envuelven
-          correctamente la página.
-        </p>
       </Container>
     </Section>
   );

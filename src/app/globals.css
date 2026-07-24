@@ -22,3 +22,22 @@
   --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
   --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
 }
+
+/*
+ * Compensa el header fijo al saltar a anclas (#id): el objetivo no queda
+ * oculto bajo la barra superior.
+ */
+html {
+  scroll-padding-top: 6rem;
+}
+
+/*
+ * Texto con degradado dorado de marca. Se aplica sobre el texto (no el fondo
+ * del elemento) recortando el degradado a la forma de las letras.
+ */
+.text-gold-gradient {
+  background: linear-gradient(120deg, #ead08c, #c9a24b 55%, #9a7729);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
