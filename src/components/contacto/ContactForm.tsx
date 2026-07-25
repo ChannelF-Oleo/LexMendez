@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Button from "@/components/ui/Button";
 import { areas } from "@/data/areas";
+import { sendContactMessage } from "@/lib/actions/contact";
 
 const fieldClasses =
   "mt-1.5 w-full rounded-xl border border-purple/15 bg-cream px-4 py-3 text-sm text-purple " +
@@ -11,18 +12,42 @@ const fieldClasses =
 
 const labelClasses = "text-sm font-medium text-purple";
 
+type Status = "idle" | "sending" | "sent" | "error";
+
 /**
- * Formulario de contacto — SOLO UI. El submit hace preventDefault y muestra un
- * estado visual temporal; la integración de envío (Resend) llega en la Fase 6.
+ * Formulario de contacto funcional: envía por Resend a través de un server
+ * action. Validación en cliente (básica) y en servidor (autoritativa).
  */
 export default function ContactForm() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // Sin envío real todavía: solo feedback visual.
-    setSent(true);
-  };
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+
+    setStatus("sending");
+    setError(null);
+
+    const result = await sendContactMessage({
+      name: String(fd.get("nombre") ?? ""),
+      email: String(fd.get("correo") ?? ""),
+      area: String(fd.get("area") ?? ""),
+      message: String(fd.get("mensaje") ?? ""),
+      company: String(fd.get("company") ?? ""), // honeypot
+    });
+
+    if (result.ok) {
+      setStatus("sent");
+      form.reset();
+    } else {
+      setStatus("error");
+      setError(result.error);
+    }
+  }
+
+  const sending = status === "sending";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5" noValidate>
@@ -35,6 +60,7 @@ export default function ContactForm() {
           name="nombre"
           type="text"
           autoComplete="name"
+          required
           placeholder="Tu nombre completo"
           className={fieldClasses}
         />
@@ -49,6 +75,7 @@ export default function ContactForm() {
           name="correo"
           type="email"
           autoComplete="email"
+          required
           placeholder="tucorreo@ejemplo.com"
           className={fieldClasses}
         />
@@ -79,26 +106,41 @@ export default function ContactForm() {
           id="mensaje"
           name="mensaje"
           rows={5}
+          required
           placeholder="Cuéntanos brevemente sobre tu consulta"
           className={`${fieldClasses} resize-y`}
         />
       </div>
 
-      <Button type="submit" variant="gold" className="w-full">
-        Enviar mensaje
+      {/* Honeypot anti-spam: oculto para humanos, tentador para bots. */}
+      <div className="hidden" aria-hidden="true">
+        <label htmlFor="company">No rellenar</label>
+        <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
+
+      <Button type="submit" variant="gold" className="w-full" disabled={sending}>
+        {sending ? "Enviando…" : "Enviar mensaje"}
       </Button>
 
-      {sent ? (
+      {status === "sent" ? (
         <p
           role="status"
-          className="rounded-xl border border-gold2/40 bg-gold1/15 px-4 py-3 text-sm text-purple"
+          className="rounded-xl border border-green-400/40 bg-green-500/10 px-4 py-3 text-sm text-green-800"
         >
-          ¡Gracias! Hemos recibido tu interés. El envío del formulario se conectará
-          próximamente.
+          ¡Gracias por escribirnos! Hemos recibido tu mensaje y te responderemos
+          pronto.
+        </p>
+      ) : status === "error" ? (
+        <p
+          role="alert"
+          className="rounded-xl border border-red-400/30 bg-red-500/10 px-4 py-3 text-sm text-red-700"
+        >
+          {error ?? "No se pudo enviar el mensaje."}
         </p>
       ) : (
         <p className="text-xs text-purpleSoft/70">
-          El envío del formulario se conectará próximamente.
+          Tu mensaje llega directamente a nuestro equipo. Te responderemos por
+          correo.
         </p>
       )}
     </form>
