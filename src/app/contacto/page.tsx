@@ -4,12 +4,12 @@ import Section from "@/components/ui/Section";
 import Isotype from "@/components/brand/Isotype";
 import Subhero from "@/components/layout/Subhero";
 import ContactForm from "@/components/contacto/ContactForm";
-import { site } from "@/data/site";
+import { site, telefonos } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Contacto — LexMendez Global",
   description:
-    "Escríbenos o agenda una consulta. Santo Domingo, República Dominicana.",
+    "Escríbenos o agenda una consulta. Azua de Compostela, República Dominicana.",
 };
 
 const iconos = {
@@ -38,7 +38,12 @@ const iconos = {
 
 export default function ContactoPage() {
   const contactos = [
-    { icon: iconos.telefono, label: "Teléfono", value: site.telefono, href: "tel:+18494725115" },
+    ...telefonos.map((t) => ({
+      icon: iconos.telefono,
+      label: `Teléfono · ${t.pais}`,
+      value: t.numero,
+      href: t.href as string | undefined,
+    })),
     { icon: iconos.correo, label: "Correo", value: site.email, href: `mailto:${site.email}` },
     { icon: iconos.ubicacion, label: "Ubicación", value: site.ciudad, href: undefined },
     { icon: iconos.web, label: "Web", value: site.web, href: `https://${site.web}` },

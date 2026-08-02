@@ -60,7 +60,7 @@ export default function Home() {
           <div className="max-w-3xl">
             <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.28em]">
               <span className="h-px w-8 bg-gradient-to-r from-gold1 to-gold3" />
-              <span className="text-gold-gradient">Bufete jurídico · Santo Domingo</span>
+              <span className="text-gold-gradient">Asesoría jurídica · Azua de Compostela</span>
             </p>
             <h1 className="mt-6 font-serif text-4xl font-semibold leading-[1.1] text-cream sm:text-5xl md:text-6xl">
               Tu tranquilidad legal, <span className="italic">nuestra</span>{" "}

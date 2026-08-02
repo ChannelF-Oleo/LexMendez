@@ -29,13 +29,15 @@ export interface Post {
  */
 export type PostInput = Omit<Post, "id" | "createdAt" | "updatedAt">;
 
-/** Categorías iniciales del blog, alineadas con las áreas de práctica. */
+/**
+ * Categorías del blog, alineadas con las áreas de práctica. "Todas" no se
+ * almacena: es solo el filtro por defecto de los chips.
+ */
 export const POST_CATEGORIES: string[] = [
-  "Derecho Civil",
+  "Civil",
   "Familia",
-  "Sucesiones",
-  "Inmobiliario",
   "Migración",
-  "Contratos",
-  "General",
+  "Inmobiliario",
+  "Traducciones",
+  "Corporativo",
 ];

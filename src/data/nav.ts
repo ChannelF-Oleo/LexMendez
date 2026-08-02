@@ -1,3 +1,5 @@
+import { areas } from "@/data/areas";
+
 /** Enlaces de navegación principal, compartidos por Header y Footer. */
 export type NavLink = {
   label: string;
@@ -12,11 +14,14 @@ export const navLinks: NavLink[] = [
   { label: "Contacto", href: "/contacto" },
 ];
 
-/** Áreas de práctica listadas en el footer (todas apuntan a /areas). */
-export const practiceAreas: string[] = [
-  "Derecho Civil",
-  "Derecho de Familia",
-  "Sucesiones y Herencias",
-  "Derecho Inmobiliario",
-  "Migratorio y Extranjería",
+/**
+ * Áreas de práctica listadas en el footer (todas apuntan a /areas). Se derivan
+ * de `areas` para que footer y página de áreas nunca se desincronicen.
+ */
+export const practiceAreas: string[] = areas.map((area) => area.titulo);
+
+/** Enlaces legales/corporativos del footer. */
+export const companyLinks: NavLink[] = [
+  { label: "Política de privacidad", href: "/politica-de-privacidad" },
+  { label: "Aviso legal", href: "/aviso-legal" },
 ];

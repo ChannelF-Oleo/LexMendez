@@ -99,6 +99,13 @@ export default function AreaModal({ area, onClose }: AreaModalProps) {
             ))}
           </ul>
 
+          {area.nota ? (
+            <p className="mt-6 rounded-xl border border-gold2/30 bg-cream2/70 px-4 py-3 text-sm leading-relaxed text-purpleSoft">
+              <span className="font-semibold text-purple">Nota: </span>
+              {area.nota}
+            </p>
+          ) : null}
+
           <div className="mt-8">
             <Button as="link" href="/contacto" variant="gold">
               Consultar sobre esta área

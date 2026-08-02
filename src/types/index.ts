@@ -7,4 +7,6 @@ export type Area = {
   titulo: string;
   descripcion: string;
   servicios: string[];
+  /** Aclaración opcional; el modal la muestra bajo la lista de servicios. */
+  nota?: string;
 };

@@ -10,7 +10,7 @@ import { site } from "@/data/site";
 export const metadata: Metadata = {
   title: "Nosotros — LexMendez Global",
   description:
-    "Firma jurídica moderna y cercana en Santo Domingo, con visión internacional del derecho.",
+    "Firma jurídica moderna y cercana en Azua de Compostela, con visión internacional del derecho.",
 };
 
 const valores = [

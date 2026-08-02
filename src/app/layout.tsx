@@ -22,7 +22,7 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "LexMendez Global — Soluciones legales. Visión global.",
   description:
-    "LexMendez Global, bufete de abogados en Santo Domingo, República Dominicana. Soluciones legales con visión global.",
+    "LexMendez Global, firma de abogados en Azua de Compostela, República Dominicana. Soluciones legales con visión global.",
 };
 
 export default function RootLayout({

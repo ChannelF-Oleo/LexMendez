@@ -14,11 +14,18 @@ const labelClasses = "text-sm font-medium text-purple";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
+type ContactFormProps = {
+  /** Versión reducida para espacios estrechos (p. ej. el sidebar del blog). */
+  compact?: boolean;
+};
+
 /**
  * Formulario de contacto funcional: envía por Resend a través de un server
  * action. Validación en cliente (básica) y en servidor (autoritativa).
+ * `compact` solo ajusta el espaciado y el alto del textarea: la lógica de envío
+ * es la misma en todas partes.
  */
-export default function ContactForm() {
+export default function ContactForm({ compact = false }: ContactFormProps) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
 
@@ -50,7 +57,11 @@ export default function ContactForm() {
   const sending = status === "sending";
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+    <form
+      onSubmit={handleSubmit}
+      className={compact ? "space-y-4" : "space-y-5"}
+      noValidate
+    >
       <div>
         <label htmlFor="nombre" className={labelClasses}>
           Nombre
@@ -105,7 +116,7 @@ export default function ContactForm() {
         <textarea
           id="mensaje"
           name="mensaje"
-          rows={5}
+          rows={compact ? 4 : 5}
           required
           placeholder="Cuéntanos brevemente sobre tu consulta"
           className={`${fieldClasses} resize-y`}

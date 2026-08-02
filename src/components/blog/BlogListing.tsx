@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import CategoryChips, { ALL } from "./CategoryChips";
 import PostCard from "./PostCard";
-import type { Post } from "@/types/post";
+import { POST_CATEGORIES, type Post } from "@/types/post";
 
 /**
  * Listado de posts con filtro por categoría en el cliente (sin refetch): recibe
@@ -12,13 +12,16 @@ import type { Post } from "@/types/post";
 export default function BlogListing({ posts }: { posts: Post[] }) {
   const [active, setActive] = useState<string>(ALL);
 
-  // Categorías presentes en los posts, preservando el orden de aparición.
+  // Categorías oficiales en su orden canónico. Si algún post arrastra una
+  // categoría antigua, se añade al final para que siga siendo alcanzable.
   const categories = useMemo(() => {
-    const seen: string[] = [];
+    const extra: string[] = [];
     for (const p of posts) {
-      if (p.category && !seen.includes(p.category)) seen.push(p.category);
+      if (p.category && !POST_CATEGORIES.includes(p.category) && !extra.includes(p.category)) {
+        extra.push(p.category);
+      }
     }
-    return seen;
+    return [...POST_CATEGORIES, ...extra];
   }, [posts]);
 
   const visible = useMemo(
@@ -48,7 +51,7 @@ export default function BlogListing({ posts }: { posts: Post[] }) {
           No hay artículos en esta categoría todavía.
         </p>
       ) : (
-        <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2">
           {visible.map((post) => (
             <PostCard key={post.id} post={post} />
           ))}

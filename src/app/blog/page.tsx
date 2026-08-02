@@ -5,6 +5,7 @@ import Subhero from "@/components/layout/Subhero";
 import CtaBand from "@/components/layout/CtaBand";
 import FeaturedPost from "@/components/blog/FeaturedPost";
 import BlogListing from "@/components/blog/BlogListing";
+import BlogSidebar from "@/components/blog/BlogSidebar";
 import { getPublishedPosts, getFeaturedPost } from "@/lib/posts";
 
 // ISR: la página se regenera como máximo cada 5 minutos.
@@ -40,13 +41,22 @@ export default async function BlogPage() {
 
       <Section>
         <Container>
-          {featured ? (
-            <div className="mb-14">
-              <FeaturedPost post={featured} />
-            </div>
-          ) : null}
+          {/* Dos columnas en desktop; en móvil el sidebar cae debajo. */}
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-10">
+            <div className="lg:col-span-2">
+              {featured ? (
+                <div className="mb-14">
+                  <FeaturedPost post={featured} />
+                </div>
+              ) : null}
 
-          <BlogListing posts={rest} />
+              <BlogListing posts={rest} />
+            </div>
+
+            <div className="lg:col-span-1">
+              <BlogSidebar />
+            </div>
+          </div>
         </Container>
       </Section>
 

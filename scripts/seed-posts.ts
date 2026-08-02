@@ -63,7 +63,8 @@ Si quieres orientación sobre tu caso, puedes [escribirnos](/contacto) y te expl
   {
     title: "Cómo constituir una empresa en RD: primeros pasos",
     slug: "como-constituir-empresa-rd",
-    category: "Contratos",
+    // Antes "Contratos"; esa categoría ya no existe y el contenido es corporativo.
+    category: "Corporativo",
     excerpt:
       "Del nombre comercial al registro mercantil: una hoja de ruta para formalizar tu negocio en República Dominicana.",
     coverImageUrl: "",

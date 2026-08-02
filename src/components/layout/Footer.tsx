@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Logo from "@/components/brand/Logo";
 import Container from "@/components/ui/Container";
-import { navLinks, practiceAreas } from "@/data/nav";
+import { companyLinks, navLinks, practiceAreas } from "@/data/nav";
+import { site, telefonos } from "@/data/site";
 
 const socials = [
   {
@@ -25,13 +26,13 @@ export default function Footer() {
   return (
     <footer className="bg-purpleDeep text-cream/80">
       <Container className="py-16">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-6">
           {/* a) Marca */}
-          <div className="sm:col-span-2 lg:col-span-1">
+          <div className="sm:col-span-2">
             <Logo variant="light" href="/" />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-cream/70">
-              Bufete de abogados en Santo Domingo, República Dominicana,
-              comprometido con soluciones legales de excelencia.
+              Firma de abogados en {site.ciudad}, República Dominicana,
+              comprometida con soluciones legales de excelencia.
             </p>
             <p className="mt-4 font-serif text-base italic text-gold1">
               Soluciones legales. Visión global.
@@ -72,32 +73,52 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* d) Contacto */}
+          {/* d) Empresa */}
+          <div>
+            <h2 className="mb-4 font-serif text-lg text-cream">Empresa</h2>
+            <ul className="space-y-2.5 text-sm">
+              {companyLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-cream/70 transition-colors hover:text-gold1"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* e) Contacto */}
           <div>
             <h2 className="mb-4 font-serif text-lg text-cream">Contacto</h2>
             <ul className="space-y-2.5 text-sm text-cream/70">
+              {telefonos.map((t) => (
+                <li key={t.href}>
+                  <a href={t.href} className="transition-colors hover:text-gold1">
+                    {t.numero}
+                  </a>
+                  <span className="ml-1.5 text-xs text-cream/40">{t.pais}</span>
+                </li>
+              ))}
               <li>
-                <a href="tel:+18494725115" className="transition-colors hover:text-gold1">
-                  +1 (849) 472-5115
+                <a
+                  href={`mailto:${site.email}`}
+                  className="transition-colors hover:text-gold1"
+                >
+                  {site.email}
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:info@lexmendezglobal.com"
+                  href={`https://${site.web}`}
                   className="transition-colors hover:text-gold1"
                 >
-                  info@lexmendezglobal.com
+                  {site.web}
                 </a>
               </li>
-              <li>
-                <a
-                  href="https://www.lexmendezglobal.com"
-                  className="transition-colors hover:text-gold1"
-                >
-                  www.lexmendezglobal.com
-                </a>
-              </li>
-              <li>Santo Domingo, Rep. Dom.</li>
+              <li>{site.ciudad}, Rep. Dom.</li>
             </ul>
           </div>
         </div>
